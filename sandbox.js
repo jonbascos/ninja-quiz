@@ -1,5 +1,6 @@
 const correctAnswers = ['B', 'B', 'B', 'B']
 const form = document.querySelector('.quiz-form')
+const scoreSection = document.querySelector('.score-section')
 const scoreboard = document.querySelector('.scoreboard')
 
 form.addEventListener('submit', e => {    
@@ -12,6 +13,19 @@ form.addEventListener('submit', e => {
             score += 25
         }
     })
-    scoreboard.textContent = score 
-})
+    
+    // Animate the scoreboard
 
+    scoreSection.style.display = 'block';
+    let counter = 0
+   
+    const timer = setInterval( () => {
+        if(counter > score) {
+            clearInterval(timer)
+        } else {
+            scoreboard.textContent = `${counter}`
+
+            counter++
+        }
+    }, 10)
+})
